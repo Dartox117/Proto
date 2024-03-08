@@ -27,6 +27,7 @@ public class PlayerMoovement : MonoBehaviour
     [SerializeField] float gravityScale = 0.02f;
     public bool CanMoove = true;
 
+
     //Movement fonction
 
 

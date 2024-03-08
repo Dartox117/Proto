@@ -14,12 +14,14 @@ public class ProtoMoove : MonoBehaviour
     [SerializeField] float fallGravityScale = 0.5f;
     [SerializeField] float gravityScale = 0.5f;
     [SerializeField] float JumpPower = 4f;
-    private int Shooes = 1;
+    public int Shooes = 1;
     //Used to change the sprite color to match platform color
     [SerializeField] SpriteRenderer SpriteRenderer;
     private Color Plat1 = new Color32(0xB7,0x43,0x42,0xFF);
     private Color Plat2 = new Color32(33, 144, 1, 255);
     private Color Plat3 = new Color32(0, 0, 255, 255);
+    private Color Plat4 = new Color32(255, 255, 0, 255);
+    [SerializeField] GameObject Bounce;
     // Start is called before the first frame update
     void Start()
     {
@@ -92,6 +94,11 @@ public class ProtoMoove : MonoBehaviour
                 Shooes = 3;
                 SpriteRenderer.color = Plat3;
             }
+            else if (Input.GetKeyDown(KeyCode.Keypad4))
+            {
+                Shooes = 4;
+                SpriteRenderer.color = Plat4;
+            }
         }
         
     }
@@ -117,6 +124,7 @@ public class ProtoMoove : MonoBehaviour
         {
             Debug.Log("Perdu Bleu");
         }
+        
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -127,4 +135,5 @@ public class ProtoMoove : MonoBehaviour
             IsGrounded = false;
         }
     }
+
 }

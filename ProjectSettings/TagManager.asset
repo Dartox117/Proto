@@ -8,6 +8,7 @@ TagManager:
   - PlateformA
   - PlateformB
   - PlateformC
+  - PlatformD
   layers:
   - Default
   - TransparentFX
