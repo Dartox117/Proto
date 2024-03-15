@@ -542,7 +542,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.38, y: -0.6600001, z: -7.3513803}
+  m_LocalPosition: {x: 3.38, y: -0.6600001, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2174,7 +2174,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 45f4693d08393e949b1dd449bcc5400a, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2940,6 +2940,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouvementSpeed: 5
+  NormalSpeed: 5
+  IcemouvementSpeed: 7
   IsGrounded: 0
   fallGravityScale: 0.5
   gravityScale: 0.5

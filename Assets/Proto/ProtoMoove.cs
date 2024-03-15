@@ -7,8 +7,11 @@ public class ProtoMoove : MonoBehaviour
 {
     //Speed of movement
     [SerializeField] float mouvementSpeed = 5f;
+    [SerializeField] float NormalSpeed = 5f;
+    [SerializeField] float IcemouvementSpeed = 7f;
     //Set of the isgrounded bool
     [SerializeField] bool IsGrounded;
+    private int GoRight = 0;
     private Rigidbody2D rb;
     // Jump variable
     [SerializeField] float fallGravityScale = 0.5f;
@@ -44,12 +47,45 @@ public class ProtoMoove : MonoBehaviour
         //When press player goes left
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(-mouvementSpeed * Time.deltaTime, 0, 0, Space.World);
+            if (Shooes == 3 && IsGrounded)
+            {
+                mouvementSpeed = IcemouvementSpeed;
+                transform.Translate(-mouvementSpeed * Time.deltaTime, 0, 0, Space.World);
+                GoRight = 2;
+            }
+            else
+            {
+                mouvementSpeed = NormalSpeed;
+                transform.Translate(-mouvementSpeed * Time.deltaTime, 0, 0, Space.World);
+            }
+            
         }
         //When press player goes right
-        else if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate(mouvementSpeed * Time.deltaTime, 0, 0, Space.World);
+            if (Shooes == 3 && IsGrounded)
+            {
+                mouvementSpeed = IcemouvementSpeed;
+                transform.Translate(mouvementSpeed * Time.deltaTime, 0, 0, Space.World);
+                GoRight = 1;
+            }
+            else
+            {
+                mouvementSpeed = NormalSpeed;
+                transform.Translate(mouvementSpeed * Time.deltaTime, 0, 0, Space.World);
+                
+            }
+        }
+        if (IsGrounded && Shooes == 3)
+        {
+            if (Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                rb.AddForce(Vector2.left * 3f, ForceMode2D.Impulse);
+            }
+            if (Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                rb.AddForce(Vector2.right * 3f, ForceMode2D.Impulse);
+            }
         }
     }
 
@@ -60,9 +96,13 @@ public class ProtoMoove : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
+                StartCoroutine(iceJump());
+                rb.velocity = Vector2.zero;
                 //Add force to player to make it jump
+                
                 rb.AddForce(Vector2.up * JumpPower, ForceMode2D.Impulse);
-                if (rb.velocity.y > 0)
+                
+                 if (rb.velocity.y > 0)
                 {
                     rb.gravityScale = gravityScale;
                 }
@@ -113,16 +153,22 @@ public class ProtoMoove : MonoBehaviour
         if (other.gameObject.CompareTag("PlateformA") && Shooes!=1)
         {
             Debug.Log("Perdu Rouge");
+            //Shooes = 1;
+            //SpriteRenderer.color = Plat1;
         }
         //Defeat condition on Plateform B
         if (other.gameObject.CompareTag("PlateformB") && Shooes != 2)
         {
             Debug.Log("Perdu Vert");
+            //Shooes = 2;
+           // SpriteRenderer.color = Plat2;
         }
         //Defeat condition on Plateform C
         if (other.gameObject.CompareTag("PlateformC") && Shooes != 3)
         {
             Debug.Log("Perdu Bleu");
+            //Shooes = 3;
+            //SpriteRenderer.color = Plat3;
         }
         
     }
@@ -135,5 +181,11 @@ public class ProtoMoove : MonoBehaviour
             IsGrounded = false;
         }
     }
+    private IEnumerator iceJump()
+    {
+        yield return new WaitForSeconds(0.5f);
+        mouvementSpeed = NormalSpeed;
+    }
+
 
 }
