@@ -47,6 +47,7 @@ public class ProtoMoove : MonoBehaviour
         //When press player goes left
         if (Input.GetKey(KeyCode.LeftArrow))
         {
+            SpriteRenderer.flipX = true;
             if (Shooes == 3 && IsGrounded)
             {
                 mouvementSpeed = IcemouvementSpeed;
@@ -63,6 +64,7 @@ public class ProtoMoove : MonoBehaviour
         //When press player goes right
         if (Input.GetKey(KeyCode.RightArrow))
         {
+            SpriteRenderer.flipX = false;
             if (Shooes == 3 && IsGrounded)
             {
                 mouvementSpeed = IcemouvementSpeed;
