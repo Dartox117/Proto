@@ -6,16 +6,16 @@ using static UnityEngine.ParticleSystem;
 public class ProtoMoove : MonoBehaviour
 {
     //Speed of movement
-    [SerializeField] float mouvementSpeed = 5f;
-    [SerializeField] float NormalSpeed = 5f;
-    [SerializeField] float IcemouvementSpeed = 7f;
+    [SerializeField] float mouvementSpeed = 8f;
+    [SerializeField] float NormalSpeed = 8f;
+    [SerializeField] float IcemouvementSpeed = 10f;
     //Set of the isgrounded bool
     [SerializeField] bool IsGrounded;
     private int GoRight = 0;
     private Rigidbody2D rb;
     // Jump variable
-    [SerializeField] float fallGravityScale = 0.5f;
-    [SerializeField] float gravityScale = 0.5f;
+    [SerializeField] float fallGravityScale = 10f;
+    [SerializeField] float gravityScale = 1f;
     [SerializeField] float JumpPower = 4f;
     public int Shooes = 1;
     //Used to change the sprite color to match platform color
@@ -82,11 +82,11 @@ public class ProtoMoove : MonoBehaviour
         {
             if (Input.GetKeyUp(KeyCode.LeftArrow))
             {
-                rb.AddForce(Vector2.left * 3f, ForceMode2D.Impulse);
+                rb.AddForce(Vector2.left * 5f, ForceMode2D.Impulse);
             }
             if (Input.GetKeyUp(KeyCode.RightArrow))
             {
-                rb.AddForce(Vector2.right * 3f, ForceMode2D.Impulse);
+                rb.AddForce(Vector2.right * 5f, ForceMode2D.Impulse);
             }
         }
     }
@@ -185,7 +185,7 @@ public class ProtoMoove : MonoBehaviour
     }
     private IEnumerator iceJump()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         mouvementSpeed = NormalSpeed;
     }
 

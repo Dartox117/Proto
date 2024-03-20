@@ -2902,13 +2902,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709bf543b966fab4fa98915a3f9a1612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouvementSpeed: 5
-  NormalSpeed: 5
-  IcemouvementSpeed: 7
+  mouvementSpeed: 8
+  NormalSpeed: 8
+  IcemouvementSpeed: 10
   IsGrounded: 0
-  fallGravityScale: 0.5
-  gravityScale: 0.5
-  JumpPower: 4
+  fallGravityScale: 1
+  gravityScale: 3
+  JumpPower: 10
   Shooes: 1
   SpriteRenderer: {fileID: 1563423885}
   Bounce: {fileID: 1201208748}
