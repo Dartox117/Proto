@@ -9,10 +9,10 @@ InputManager:
     m_Name: Horizontal
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: left
-    positiveButton: right
-    altNegativeButton: a
-    altPositiveButton: d
+    negativeButton: a
+    positiveButton: d
+    altNegativeButton: 
+    altPositiveButton: 
     gravity: 3
     dead: 0.001
     sensitivity: 3
@@ -470,18 +470,83 @@ InputManager:
     axis: 6
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Debug Horizontal
+    m_Name: Shooes1
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: left
-    positiveButton: right
+    negativeButton: 
+    positiveButton: '[1]'
     altNegativeButton: 
-    altPositiveButton: 
-    gravity: 1000
+    altPositiveButton: joystick button 4
+    gravity: 3
     dead: 0.001
-    sensitivity: 1000
+    sensitivity: 1
     snap: 0
     invert: 0
-    type: 2
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: CustomJump
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: w
+    altNegativeButton: 
+    altPositiveButton: joystick button 0
+    gravity: 3
+    dead: 0.001
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 0
     axis: 5
     joyNum: 0
+  - serializedVersion: 3
+    m_Name: Shooes2
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: '[2]'
+    altNegativeButton: 
+    altPositiveButton: joystick button 5
+    gravity: 3
+    dead: 0.001
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Shooes3
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: '[3]'
+    altNegativeButton: 
+    altPositiveButton: joystick button 1
+    gravity: 3
+    dead: 0.001
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 5
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Shooes4
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: '[5]'
+    altNegativeButton: 
+    altPositiveButton: joystick button 2
+    gravity: 3
+    dead: 0.001
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 5
+    joyNum: 0
+  m_UsePhysicalKeys: 1

@@ -6,9 +6,9 @@ using static UnityEngine.ParticleSystem;
 public class ProtoMoove : MonoBehaviour
 {
     //Speed of movement
-    [SerializeField] float mouvementSpeed = 8f;
-    [SerializeField] float NormalSpeed = 8f;
-    [SerializeField] float IcemouvementSpeed = 10f;
+    [SerializeField] float mouvementSpeed = 10f;
+    [SerializeField] float NormalSpeed = 10f;
+    [SerializeField] float IcemouvementSpeed = 13f;
     //Set of the isgrounded bool
     [SerializeField] bool IsGrounded;
     private int GoRight = 0;
@@ -25,12 +25,14 @@ public class ProtoMoove : MonoBehaviour
     private Color Plat3 = new Color32(0, 0, 255, 255);
     private Color Plat4 = new Color32(255, 255, 0, 255);
     [SerializeField] GameObject Bounce;
+
     // Start is called before the first frame update
     void Start()
     {
         {
             //Get Rigibody to the component
             rb = GetComponent<Rigidbody2D>();
+            float HorizontalInput = Input.GetAxis("Horizontal");
         }
     }
 
@@ -41,11 +43,13 @@ public class ProtoMoove : MonoBehaviour
         PlayerJump();
         ShooesChange();
     }
+    
 
     private void PlayerMoove()
     {
         //When press player goes left
-        if (Input.GetKey(KeyCode.LeftArrow))
+        float HorizontalInput = Input.GetAxis("Horizontal");
+        if (HorizontalInput<0)
         {
             SpriteRenderer.flipX = true;
             if (Shooes == 3 && IsGrounded)
@@ -62,7 +66,8 @@ public class ProtoMoove : MonoBehaviour
             
         }
         //When press player goes right
-        if (Input.GetKey(KeyCode.RightArrow))
+        float horizontalInput = Input.GetAxis("Horizontal");
+        if (horizontalInput > 0)
         {
             SpriteRenderer.flipX = false;
             if (Shooes == 3 && IsGrounded)
@@ -80,11 +85,11 @@ public class ProtoMoove : MonoBehaviour
         }
         if (IsGrounded && Shooes == 3)
         {
-            if (Input.GetKeyUp(KeyCode.LeftArrow))
+            if (Input.GetButtonUp("Horizontal"))
             {
                 rb.AddForce(Vector2.left * 5f, ForceMode2D.Impulse);
             }
-            if (Input.GetKeyUp(KeyCode.RightArrow))
+            if (Input.GetKeyUp(KeyCode.D))
             {
                 rb.AddForce(Vector2.right * 5f, ForceMode2D.Impulse);
             }
@@ -96,7 +101,7 @@ public class ProtoMoove : MonoBehaviour
         //Check of bool
         if (IsGrounded)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetButton("CustomJump"))
             {
                 StartCoroutine(iceJump());
                 rb.velocity = Vector2.zero;
@@ -121,22 +126,22 @@ public class ProtoMoove : MonoBehaviour
     {
         if(!IsGrounded)
         {
-            if (Input.GetKeyDown(KeyCode.Keypad1))
+            if (Input.GetButton("Shooes1"))
             {
                 Shooes = 1;
                 SpriteRenderer.color = Plat1;
             }
-            else if (Input.GetKeyDown(KeyCode.Keypad2))
+            else if (Input.GetButton("Shooes2"))
             {
                 Shooes = 2;
                 SpriteRenderer.color = Plat2;
             }
-            else if (Input.GetKeyDown(KeyCode.Keypad3))
+            else if (Input.GetButton("Shooes3"))
             {
                 Shooes = 3;
                 SpriteRenderer.color = Plat3;
             }
-            else if (Input.GetKeyDown(KeyCode.Keypad4))
+            else if (Input.GetButton("Shooes4"))
             {
                 Shooes = 4;
                 SpriteRenderer.color = Plat4;

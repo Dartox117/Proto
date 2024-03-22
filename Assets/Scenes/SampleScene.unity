@@ -2902,9 +2902,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709bf543b966fab4fa98915a3f9a1612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouvementSpeed: 8
-  NormalSpeed: 8
-  IcemouvementSpeed: 10
+  mouvementSpeed: 10
+  NormalSpeed: 10
+  IcemouvementSpeed: 13
   IsGrounded: 0
   fallGravityScale: 1
   gravityScale: 3
