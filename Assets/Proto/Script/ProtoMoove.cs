@@ -49,14 +49,13 @@ public class ProtoMoove : MonoBehaviour
     {
         //When press player goes left
         float HorizontalInput = Input.GetAxis("Horizontal");
-        if (HorizontalInput<0)
+        if (HorizontalInput<0 || Input.GetKey(KeyCode.A))
         {
             SpriteRenderer.flipX = true;
             if (Shooes == 3 && IsGrounded)
             {
                 mouvementSpeed = IcemouvementSpeed;
                 transform.Translate(-mouvementSpeed * Time.deltaTime, 0, 0, Space.World);
-                GoRight = 2;
             }
             else
             {
@@ -67,14 +66,13 @@ public class ProtoMoove : MonoBehaviour
         }
         //When press player goes right
         float horizontalInput = Input.GetAxis("Horizontal");
-        if (horizontalInput > 0)
+        if (horizontalInput > 0 || Input.GetKey(KeyCode.D))
         {
             SpriteRenderer.flipX = false;
             if (Shooes == 3 && IsGrounded)
             {
                 mouvementSpeed = IcemouvementSpeed;
                 transform.Translate(mouvementSpeed * Time.deltaTime, 0, 0, Space.World);
-                GoRight = 1;
             }
             else
             {
@@ -85,14 +83,20 @@ public class ProtoMoove : MonoBehaviour
         }
         if (IsGrounded && Shooes == 3)
         {
-            if (Input.GetButtonUp("Horizontal"))
+            {
+                if (Input.GetKeyUp(KeyCode.A))
             {
                 rb.AddForce(Vector2.left * 5f, ForceMode2D.Impulse);
             }
-            if (Input.GetKeyUp(KeyCode.D))
-            {
-                rb.AddForce(Vector2.right * 5f, ForceMode2D.Impulse);
             }
+                
+            {
+                if (Input.GetKeyUp(KeyCode.D))
+                {
+                    rb.AddForce(Vector2.right * 5f, ForceMode2D.Impulse);
+                }
+            }
+                
         }
     }
 
