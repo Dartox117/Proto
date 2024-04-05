@@ -11,13 +11,16 @@ public class ProtoMoove : MonoBehaviour
     [SerializeField] float IcemouvementSpeed = 13f;
     //Set of the isgrounded bool
     [SerializeField] bool IsGrounded;
+    public bool IceActive = false;
+    public bool MontActive = false;
+    public bool DestroyActive = false;
     private int GoRight = 0;
     private Rigidbody2D rb;
     // Jump variable
     [SerializeField] float fallGravityScale = 10f;
     [SerializeField] float gravityScale = 1f;
     [SerializeField] float JumpPower = 4f;
-    public int Shooes = 1;
+    public int Shooes = 2;
     //Used to change the sprite color to match platform color
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Sprite Base;
@@ -38,7 +41,6 @@ public class ProtoMoove : MonoBehaviour
             //Get Rigibody to the component
             rb = GetComponent<Rigidbody2D>();
             float HorizontalInput = Input.GetAxis("Horizontal");
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = Mont;
         }
     }
 
@@ -136,31 +138,23 @@ public class ProtoMoove : MonoBehaviour
     {
         if(!IsGrounded)
         {
-            if (Input.GetButton("Shooes1"))
+            if (Input.GetButton("Shooes1")&&MontActive)
             {
-                Shooes = 1;
-                this.gameObject.GetComponent<SpriteRenderer>().sprite = Mont;
-                //SpriteRenderer.color = Plat1;
+                MontShooesChange();
             }
             else if (Input.GetButton("Shooes2"))
             {
-                Shooes = 2;
-                this.gameObject.GetComponent<SpriteRenderer>().sprite = Base;
+                BaseShooesChange();
 
-                //SpriteRenderer.color = Plat2;
             }
-            else if (Input.GetButton("Shooes3"))
+            else if (Input.GetButton("Shooes3")&&IceActive)
             {
-                Shooes = 3;
-                this.gameObject.GetComponent<SpriteRenderer>().sprite = Glisse;
-
-                //SpriteRenderer.color = Plat3;
+                IceShooesChange();
             }
-            else if (Input.GetButton("Shooes4"))
+            else if (Input.GetButton("Shooes4")&&DestroyActive)
             {
                 Shooes = 4;
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = Pic;
-                //SpriteRenderer.color = Plat4;
             }
         }
         
@@ -178,24 +172,23 @@ public class ProtoMoove : MonoBehaviour
         {
             Debug.Log("Perdu Rouge");
             StartCoroutine(damage());
-            //Shooes = 1;
-            //SpriteRenderer.color = Plat1;
+            MontShooesChange();
+
         }
         //Defeat condition on Plateform B
         if (other.gameObject.CompareTag("PlateformB") && Shooes != 2)
         {
             Debug.Log("Perdu Vert");
             StartCoroutine(damage());
-            //Shooes = 2;
-            // SpriteRenderer.color = Plat2;
+            BaseShooesChange();
+            
         }
         //Defeat condition on Plateform C
         if (other.gameObject.CompareTag("PlateformC") && Shooes != 3)
         {
             Debug.Log("Perdu Bleu");
             StartCoroutine(damage());
-            //Shooes = 3;
-            //SpriteRenderer.color = Plat3;
+            IceShooesChange();
         }
         
     }
@@ -219,6 +212,23 @@ public class ProtoMoove : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         spriteRenderer.color = BaseColor;
     }
+    private void IceShooesChange()
+    {
+        Shooes = 3;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = Glisse;
+    }
+    private void MontShooesChange()
+    {
+        Shooes = 1;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = Mont;
+    }
+    private void BaseShooesChange()
+    {
+        Shooes = 2;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = Base;
+    }
+
+
 
 
 }

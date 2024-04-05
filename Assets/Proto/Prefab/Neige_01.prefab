@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6350403801342576066}
   - component: {fileID: 843080569800816731}
   - component: {fileID: 7576831443794110078}
-  - component: {fileID: 6200679292845366258}
+  - component: {fileID: 3662489856909414755}
   m_Layer: 0
   m_Name: Neige_01
   m_TagString: PlateformB
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 47486f4849c2a9f4aa9c963b151da3b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ccfb87957a9fc284da17834048276b2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -113,8 +113,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &6200679292845366258
-PolygonCollider2D:
+--- !u!61 &3662489856909414755
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -151,22 +151,11 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.1875, y: 0.86328125}
+    oldSize: {x: 2.8554688, y: 1.0273438}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 1.0507812, y: 0.37695312}
-      - {x: 0.22265625, y: 0.38085938}
-      - {x: -0.03515625, y: 0.40039062}
-      - {x: -0.921875, y: 0.43164062}
-      - {x: -1.09375, y: 0.43164062}
-      - {x: -1.09375, y: -0.42382812}
-      - {x: -1.0859375, y: -0.43164062}
-      - {x: 1.09375, y: -0.43164062}
-      - {x: 1.09375, y: 0.021484375}
-      - {x: 1.0859375, y: 0.36132812}
-  m_UseDelaunayMesh: 0
+  m_Size: {x: 2.8554688, y: 1.0273438}
+  m_EdgeRadius: 0
