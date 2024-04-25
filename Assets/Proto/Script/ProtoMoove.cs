@@ -21,18 +21,22 @@ public class ProtoMoove : MonoBehaviour
     [SerializeField] float gravityScale = 1f;
     [SerializeField] float JumpPower = 4f;
     public int Shooes = 2;
+
+
     //Used to change the sprite color to match platform color
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Sprite Base;
     [SerializeField] Sprite Glisse;
     [SerializeField] Sprite Mont;
     [SerializeField] Sprite Pic;
-    //private Color Plat1 = new Color32(0xB7,0x43,0x42,0xFF);
-    //private Color Plat2 = new Color32(33, 144, 1, 255);
+
+
     private Color Plat3 = new Color32(0, 0, 255, 255);
     private Color BaseColor = new Color32(255, 255, 255, 255);
-    //private Color Plat4 = new Color32(255, 255, 0, 255);
-    [SerializeField] GameObject Bounce;
+
+
+    [SerializeField] GameObject DefeatMenu;
+    [SerializeField] GameObject Tuto;
 
     // Start is called before the first frame update
     void Start()
@@ -190,6 +194,16 @@ public class ProtoMoove : MonoBehaviour
             StartCoroutine(damage());
             IceShooesChange();
         }
+        if (other.gameObject.CompareTag("PlatformD") && Shooes != 4)
+        {
+            Debug.Log("Perdu glace brisée");
+            IceShooesChange();
+        }
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            StartCoroutine(damage());
+            DefeatMenu.SetActive(true);
+        }
         
     }
 
@@ -227,6 +241,7 @@ public class ProtoMoove : MonoBehaviour
         Shooes = 2;
         this.gameObject.GetComponent<SpriteRenderer>().sprite = Base;
     }
+
 
 
 

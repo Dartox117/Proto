@@ -9,6 +9,7 @@ TagManager:
   - PlateformB
   - PlateformC
   - PlatformD
+  - Obstacle
   layers:
   - Default
   - TransparentFX
