@@ -10,6 +10,7 @@ TagManager:
   - PlateformC
   - PlatformD
   - Obstacle
+  - DeathZone
   layers:
   - Default
   - TransparentFX

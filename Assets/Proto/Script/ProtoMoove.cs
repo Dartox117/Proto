@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
+using UnityEngine.UI;
 
 public class ProtoMoove : MonoBehaviour
 {
@@ -37,6 +38,13 @@ public class ProtoMoove : MonoBehaviour
 
     [SerializeField] GameObject DefeatMenu;
     [SerializeField] GameObject Tuto;
+
+    //UI GameObject
+    [SerializeField] Image image;
+    [SerializeField] Sprite NormalUI;
+    [SerializeField] Sprite NeigeUI;
+    [SerializeField] Sprite PatinsUI;
+    [SerializeField] Sprite PicUI;
 
     // Start is called before the first frame update
     void Start()
@@ -159,6 +167,7 @@ public class ProtoMoove : MonoBehaviour
             {
                 Shooes = 4;
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = Pic;
+                image.sprite = PicUI;
             }
         }
         
@@ -197,7 +206,7 @@ public class ProtoMoove : MonoBehaviour
         if (other.gameObject.CompareTag("PlatformD") && Shooes != 4)
         {
             Debug.Log("Perdu glace brisée");
-            IceShooesChange();
+            StartCoroutine(damage());
         }
         if (other.gameObject.CompareTag("Obstacle"))
         {
@@ -230,16 +239,19 @@ public class ProtoMoove : MonoBehaviour
     {
         Shooes = 3;
         this.gameObject.GetComponent<SpriteRenderer>().sprite = Glisse;
+        image.sprite = PatinsUI;
     }
     private void MontShooesChange()
     {
         Shooes = 1;
         this.gameObject.GetComponent<SpriteRenderer>().sprite = Mont;
+        image.sprite = NeigeUI;
     }
     private void BaseShooesChange()
     {
         Shooes = 2;
         this.gameObject.GetComponent<SpriteRenderer>().sprite = Base;
+        image.sprite = NormalUI;
     }
 
 
