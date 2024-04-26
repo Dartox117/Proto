@@ -46,6 +46,9 @@ public class ProtoMoove : MonoBehaviour
     [SerializeField] Sprite PatinsUI;
     [SerializeField] Sprite PicUI;
 
+    //Imported code 
+    [SerializeField] HealthBar healthBar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -231,6 +234,7 @@ public class ProtoMoove : MonoBehaviour
     }
     private IEnumerator damage()
     {
+        healthBar.Bar.fillAmount += 0.1f;
         spriteRenderer.color = Plat3;
         yield return new WaitForSeconds(0.3f);
         spriteRenderer.color = BaseColor;
