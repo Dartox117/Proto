@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6077911173093797391}
   - component: {fileID: 8641879610983827812}
   - component: {fileID: 2883485660168561591}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Glace_01
   m_TagString: PlateformC
   m_Icon: {fileID: 0}

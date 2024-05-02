@@ -46,6 +46,10 @@ public class ProtoMoove : MonoBehaviour
     [SerializeField] Sprite PatinsUI;
     [SerializeField] Sprite PicUI;
 
+    [SerializeField] Transform OverlapPoint;
+    [SerializeField] LayerMask Ground;
+
+
     //Imported code 
     [SerializeField] HealthBar healthBar;
 
@@ -65,6 +69,7 @@ public class ProtoMoove : MonoBehaviour
         PlayerMoove();
         PlayerJump();
         ShooesChange();
+        Grounded();
     }
     
 
@@ -178,11 +183,6 @@ public class ProtoMoove : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D other)
     {
-        //If player touch a plateform change is grounded bool
-        if ((other.gameObject.CompareTag("PlateformA"))|| (other.gameObject.CompareTag("PlateformB")) || (other.gameObject.CompareTag("PlateformC")))
-        {
-            IsGrounded = true;
-        }
         //Defeat condition on Plateform A
         if (other.gameObject.CompareTag("PlateformA") && Shooes!=1)
         {
@@ -217,6 +217,10 @@ public class ProtoMoove : MonoBehaviour
             DefeatMenu.SetActive(true);
         }
         
+    }
+    void Grounded()
+    {
+        IsGrounded = Physics2D.OverlapCircle(OverlapPoint.position,0.001f,Ground);
     }
 
     private void OnCollisionExit2D(Collision2D other)

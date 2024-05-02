@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 843080569800816731}
   - component: {fileID: 7576831443794110078}
   - component: {fileID: 3662489856909414755}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Neige_01
   m_TagString: PlateformB
   m_Icon: {fileID: 0}
