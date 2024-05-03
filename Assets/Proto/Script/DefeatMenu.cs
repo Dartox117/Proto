@@ -22,6 +22,6 @@ public class DefeatMenu : MonoBehaviour
     }
     public void RespawnDefeat()
     {
-
+        SceneManager.LoadScene("SCN_TUTO");
     }
 }

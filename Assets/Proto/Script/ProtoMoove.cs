@@ -18,10 +18,12 @@ public class ProtoMoove : MonoBehaviour
     private int GoRight = 0;
     private Rigidbody2D rb;
     // Jump variable
-    [SerializeField] float fallGravityScale = 10f;
-    [SerializeField] float gravityScale = 1f;
-    [SerializeField] float JumpPower = 4f;
+    [SerializeField] float fallGravityScale = 1f;
+    [SerializeField] float gravityScale = 3f;
+    [SerializeField] float JumpPower = 10f;
     public int Shooes = 2;
+
+    [SerializeField] Animator animator;
 
 
     //Used to change the sprite color to match platform color
@@ -47,7 +49,9 @@ public class ProtoMoove : MonoBehaviour
     [SerializeField] Sprite PicUI;
 
     [SerializeField] Transform OverlapPoint;
+    [SerializeField] Transform OverlapPoint2;
     [SerializeField] LayerMask Ground;
+
 
 
     //Imported code 
@@ -79,6 +83,8 @@ public class ProtoMoove : MonoBehaviour
         float HorizontalInput = Input.GetAxis("Horizontal");
         if (HorizontalInput<0 || Input.GetKey(KeyCode.A))
         {
+            Debug.Log("efefef");
+            animator.SetBool("Walk", true);
             spriteRenderer.flipX = true;
             if (Shooes == 3 && IsGrounded)
             {
@@ -92,10 +98,15 @@ public class ProtoMoove : MonoBehaviour
             }
             
         }
+        else
+        {
+            animator.SetBool("Walk", false);
+        }
         //When press player goes right
         float horizontalInput = Input.GetAxis("Horizontal");
         if (horizontalInput > 0 || Input.GetKey(KeyCode.D))
         {
+            animator.SetBool("Walk", true);
             spriteRenderer.flipX = false;
             if (Shooes == 3 && IsGrounded)
             {
@@ -109,21 +120,25 @@ public class ProtoMoove : MonoBehaviour
                 
             }
         }
+        else
+        {
+            animator.SetBool("Walk", false);
+        }
         if (IsGrounded && Shooes == 3)
         {
-            {
+            
                 if (Input.GetKeyUp(KeyCode.A))
             {
                 rb.AddForce(Vector2.left * 5f, ForceMode2D.Impulse);
             }
-            }
+            
                 
-            {
+            
                 if (Input.GetKeyUp(KeyCode.D))
                 {
                     rb.AddForce(Vector2.right * 5f, ForceMode2D.Impulse);
                 }
-            }
+            
                 
         }
     }
@@ -220,7 +235,7 @@ public class ProtoMoove : MonoBehaviour
     }
     void Grounded()
     {
-        IsGrounded = Physics2D.OverlapCircle(OverlapPoint.position,0.001f,Ground);
+        IsGrounded = Physics2D.OverlapArea(OverlapPoint.position, OverlapPoint2.position, Ground);
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -245,19 +260,24 @@ public class ProtoMoove : MonoBehaviour
     }
     private void IceShooesChange()
     {
+        animator.SetInteger("Shooes", 3);
         Shooes = 3;
+        JumpPower = 10f;
         this.gameObject.GetComponent<SpriteRenderer>().sprite = Glisse;
         image.sprite = PatinsUI;
     }
     private void MontShooesChange()
     {
         Shooes = 1;
+        JumpPower = 13f;
         this.gameObject.GetComponent<SpriteRenderer>().sprite = Mont;
         image.sprite = NeigeUI;
     }
     private void BaseShooesChange()
     {
+        animator.SetInteger("Shooes", 2);
         Shooes = 2;
+        JumpPower = 10f;
         this.gameObject.GetComponent<SpriteRenderer>().sprite = Base;
         image.sprite = NormalUI;
     }
