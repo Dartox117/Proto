@@ -6,14 +6,13 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public Image Bar;
-    [SerializeField] GameObject DefeatMenu;
+    [SerializeField] ProtoMoove protoMoove;
     public float FreezeSpeed;
     public float ActualFreezeSpeed=0.0001f;
 
     // Start is called before the first frame update
     void Start()
     {
-        FreezeSpeed = ActualFreezeSpeed;
     }
 
     // Update is called once per frame
@@ -32,7 +31,7 @@ public class HealthBar : MonoBehaviour
     {
         if (Bar.fillAmount >= 1) 
         {
-            DefeatMenu.SetActive(true);
+            protoMoove.Death();
         }
     }
 

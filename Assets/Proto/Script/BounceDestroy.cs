@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BounceDestroy : MonoBehaviour
 {
-    [SerializeField] GameObject Plat;
+    public GameObject Plat;
     [SerializeField] ProtoMoove Chauss;
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,6 @@ public class BounceDestroy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
     private void OnCollisionEnter2D(Collision2D other)
     {

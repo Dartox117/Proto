@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class DefeatMenu : MonoBehaviour
 {
+    [SerializeField] ProtoMoove protomoove;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +20,10 @@ public class DefeatMenu : MonoBehaviour
     public void DefeatMainMenu()
     {
         SceneManager.LoadScene("SCN_TITLESCREEN");
+        Time.timeScale = 1.0f;
     }
     public void RespawnDefeat()
     {
-        SceneManager.LoadScene("SCN_TUTO");
+        protomoove.Respawn();
     }
 }

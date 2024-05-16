@@ -5,6 +5,7 @@ using UnityEngine;
 public class DeathTrigger : MonoBehaviour
 {
     [SerializeField] GameObject DefeatMenu;
+    [SerializeField] ProtoMoove protoMoove;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,6 @@ public class DeathTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D TriggerZone)
     {
-        DefeatMenu.SetActive(true);
+        protoMoove.Death();
     }
 }

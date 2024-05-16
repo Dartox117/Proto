@@ -5,7 +5,7 @@ using UnityEngine;
 public class DestroyShooes : MonoBehaviour
 {
     [SerializeField] ProtoMoove ProtoMoove;
-    [SerializeField] GameObject self;
+    public GameObject self;
     [SerializeField] GameObject Texte;
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class DestroyShooes : MonoBehaviour
     {
         ProtoMoove.DestroyActive = true;
         Texte.SetActive(true);
-        GameObject.Destroy(self);
+        self.SetActive(false);
     }
 }
 
