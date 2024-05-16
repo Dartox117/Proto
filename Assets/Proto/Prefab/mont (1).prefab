@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8130475548977839006
+--- !u!1 &240036292177788563
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4575393108341827313}
-  - component: {fileID: 4102995769469732386}
-  - component: {fileID: 2557970504778846502}
-  m_Layer: 0
-  m_Name: PicGlace_03
-  m_TagString: Obstacle
+  - component: {fileID: 7912895167344562384}
+  - component: {fileID: 6860672199514422679}
+  - component: {fileID: 8343551299217661386}
+  - component: {fileID: 3769241912371335767}
+  m_Layer: 3
+  m_Name: mont (1)
+  m_TagString: PlateformA
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4575393108341827313
+--- !u!4 &7912895167344562384
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8130475548977839006}
+  m_GameObject: {fileID: 240036292177788563}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 39.11, y: -4.91, z: 0.547}
-  m_LocalScale: {x: 0.44315, y: 0.44315, z: 0.44315}
+  m_LocalRotation: {x: -0, y: -0, z: -0.68737984, w: 0.72629815}
+  m_LocalPosition: {x: 5.2367096, y: -0.6820164, z: 3.9984875}
+  m_LocalScale: {x: 2.1137002, y: 2.1137002, z: 2.1137}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &4102995769469732386
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -86.846}
+--- !u!212 &6860672199514422679
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8130475548977839006}
+  m_GameObject: {fileID: 240036292177788563}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -73,25 +74,52 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3e3fc46aae93d36488ad286d221c5ec9, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: e3968196923709d4ab9c87d60370de64, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.078125, y: 1.3671875}
+  m_Size: {x: 2.55, y: 3.57}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &2557970504778846502
+--- !u!50 &8343551299217661386
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240036292177788563}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!68 &3769241912371335767
 EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8130475548977839006}
+  m_GameObject: {fileID: 240036292177788563}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -122,9 +150,19 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -1.0597756, y: -0.62128294}
-  - {x: -0.084577195, y: 0.6707782}
-  - {x: 1.0587463, y: -0.6182516}
+  - {x: 1.1875823, y: -1.7614114}
+  - {x: -0.8148564, y: -1.7706822}
+  - {x: -0.72375995, y: 0.068920866}
+  - {x: -0.747871, y: 0.25460672}
+  - {x: -0.88727343, y: 0.3463433}
+  - {x: -0.88149035, y: 0.5056112}
+  - {x: -1.0332955, y: 0.5784887}
+  - {x: -1.0193634, y: 0.77830136}
+  - {x: -1.1826053, y: 0.8270971}
+  - {x: -1.2334037, y: 0.9312597}
+  - {x: 0.08512822, y: 1.7534854}
+  - {x: 1.2804537, y: 0.45541573}
+  - {x: 1.1764052, y: -1.7551837}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
