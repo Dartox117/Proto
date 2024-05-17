@@ -6,7 +6,6 @@ public class DestroyShooes : MonoBehaviour
 {
     [SerializeField] ProtoMoove ProtoMoove;
     public GameObject self;
-    [SerializeField] GameObject Texte;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +20,6 @@ public class DestroyShooes : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D Player)
     {
         ProtoMoove.DestroyActive = true;
-        Texte.SetActive(true);
         self.SetActive(false);
     }
 }

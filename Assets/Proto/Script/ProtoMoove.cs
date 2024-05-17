@@ -13,6 +13,7 @@ public class ProtoMoove : MonoBehaviour
     [SerializeField] MontShooes montShooes;
     [SerializeField] DestroyShooes destroyShooes;
     [SerializeField] IceShooes iceShooes;
+    [SerializeField] DefeatMenu defeatMenu;
     //Speed of movement
 
     [SerializeField] float mouvementSpeed = 10f;
@@ -25,6 +26,7 @@ public class ProtoMoove : MonoBehaviour
     public bool IceActive = false;
     public bool MontActive = false;
     public bool DestroyActive = false;
+    public bool IsIntro;
 
 
     private Rigidbody2D rb;
@@ -59,8 +61,9 @@ public class ProtoMoove : MonoBehaviour
     private Color BaseColor = new Color32(255, 255, 255, 255);
 
 
-    [SerializeField] GameObject DefeatMenu;
+    public GameObject DefeatMenu;
     [SerializeField] GameObject Cam;
+    public GameObject PauseMenu;
 
     //UI GameObject
     [SerializeField] Image imageTouche;
@@ -99,6 +102,7 @@ public class ProtoMoove : MonoBehaviour
         ActualStep = SnowStep;
         CanMoove = false;
         IsTuto = true;
+        IsIntro = true;
       
 
 
@@ -107,6 +111,7 @@ public class ProtoMoove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        defeatMenu.Pause();
         if (Input.GetKeyDown(KeyCode.P))
         {
             CanMoove = false;
@@ -299,6 +304,8 @@ public class ProtoMoove : MonoBehaviour
         spriteRenderer.color = Plat3;
         yield return new WaitForSeconds(0.3f);
         spriteRenderer.color = BaseColor;
+        ActualStep.Pause();
+        ActualStep.Clear();
     }
     private void IceShooesChange()
     {
@@ -345,21 +352,14 @@ public class ProtoMoove : MonoBehaviour
         
     }
 
-    public void Death()
-    {
-        DefeatMenu.SetActive(true);
-        CanMoove = false;
-        Time.timeScale = 0f;
-        
-    }
-
-    public void Respawn()
+    public IEnumerator Respawn()
     {
         Cam.transform.position = RespawnPoint;
         transform.position = RespawnPoint;
         healthBar.Bar.fillAmount = 0f;  
-        CanMoove = true;
         Time.timeScale = 1.0f;
+        yield return new WaitForSeconds(0.1f);
+        CanMoove = true;
         spriteRenderer.flipX = false;
         BaseShooesChange();
         DefeatMenu.SetActive(false);
@@ -387,10 +387,12 @@ public class ProtoMoove : MonoBehaviour
     public void CanMooveSignal()
     {
         CanMoove = true;
+        IsIntro = false;
         RespawnPoint = transform.position;
         healthBar.Bar.fillAmount = 0f;
         healthBar.FreezeSpeed = healthBar.ActualFreezeSpeed;
     }
+    
 
 
 

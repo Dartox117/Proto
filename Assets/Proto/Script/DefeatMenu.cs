@@ -2,21 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 public class DefeatMenu : MonoBehaviour
 {
+    [SerializeField] GameObject RespawnButton;
+    [SerializeField] GameObject ResumeButton;
+    [SerializeField] HealthBar healthBar;
+     void Update()
+    {
+        Pause();
+    }
     [SerializeField] ProtoMoove protomoove;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void DefeatMainMenu()
     {
         SceneManager.LoadScene("SCN_TITLESCREEN");
@@ -24,6 +22,48 @@ public class DefeatMenu : MonoBehaviour
     }
     public void RespawnDefeat()
     {
-        protomoove.Respawn();
+        StartCoroutine(protomoove.Respawn());
+        healthBar.CanDie = true;
+
+    }
+    public IEnumerator ResumeGame()
+    {
+        Time.timeScale = 1.0f;
+        protomoove.PauseMenu.SetActive(false);
+        yield return new WaitForSeconds(0.1f);
+        if (protomoove.IsIntro == false)
+        {
+            healthBar.FreezeSpeed = healthBar.ActualFreezeSpeed;
+            protomoove.CanMoove = true;
+            
+        }
+        
+    }
+
+    public void Pause()
+    {
+
+        if (Input.GetButtonDown("Pause"))
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(ResumeButton);
+            healthBar.FreezeSpeed = 0f;
+            protomoove.CanMoove = false;
+            Time.timeScale = 0.0f;
+            protomoove.PauseMenu.SetActive(true);
+        }
+    }
+    public void Death()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(RespawnButton);
+        protomoove.DefeatMenu.SetActive(true);
+        protomoove.CanMoove = false;
+        Time.timeScale = 0f;
+
+    }
+    public void Resume()
+    {
+        StartCoroutine(ResumeGame());
     }
 }
