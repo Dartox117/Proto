@@ -20,7 +20,9 @@ public class DestroyShooes : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D Player)
     {
         ProtoMoove.DestroyActive = true;
+        ProtoMoove.ImageTouche.SetActive(true);
         self.SetActive(false);
+
     }
 }
 

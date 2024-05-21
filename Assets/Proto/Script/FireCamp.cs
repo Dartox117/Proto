@@ -21,6 +21,7 @@ public class FireCamp : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         healthBar.FreezeSpeed = -0.003f;
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

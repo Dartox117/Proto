@@ -10,18 +10,12 @@ public class ProtoMoove : MonoBehaviour
     public GameObject[] BrokenIce;
     private Vector3 RespawnPoint;
 
-    [SerializeField] MontShooes montShooes;
-    [SerializeField] DestroyShooes destroyShooes;
-    [SerializeField] IceShooes iceShooes;
-    [SerializeField] DefeatMenu defeatMenu;
-    //Speed of movement
-
+    [Header("Shooes")]
     [SerializeField] float mouvementSpeed = 10f;
     [SerializeField] float NormalSpeed = 10f;
     [SerializeField] float IcemouvementSpeed = 13f;
 
-    //Set of the isgrounded bool
-    [SerializeField] bool IsGrounded;
+
 
     public bool IceActive = false;
     public bool MontActive = false;
@@ -32,10 +26,12 @@ public class ProtoMoove : MonoBehaviour
     private Rigidbody2D rb;
     float HorizontalInput = 0f;
 
+    [Header("Jump")]
     // Jump variable
     [SerializeField] float fallGravityScale = 1f;
     [SerializeField] float gravityScale = 3f;
     [SerializeField] float JumpPower = 10f;
+    [SerializeField] float BounceForce = 15f;
 
     public int Shooes = 2;
     public float Damage = 0.1f;
@@ -48,7 +44,7 @@ public class ProtoMoove : MonoBehaviour
 
     [SerializeField] Animator animator;
 
-
+    [Header("Sprite")]
     //Used to change the sprite color to match platform color
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Sprite Base;
@@ -62,34 +58,46 @@ public class ProtoMoove : MonoBehaviour
 
 
     public GameObject DefeatMenu;
-    [SerializeField] GameObject Cam;
     public GameObject PauseMenu;
 
+    [Header("UI")]
     //UI GameObject
+    public GameObject ImageTouche;
     [SerializeField] Image imageTouche;
     [SerializeField] Sprite NormalTouche;
     [SerializeField] Sprite NeigeTouche;
     [SerializeField] Sprite PatinsTouche;
     [SerializeField] Sprite PicTouche;
-
     [SerializeField] Image image;
     [SerializeField] Sprite NormalUI;
     [SerializeField] Sprite NeigeUI;
     [SerializeField] Sprite PatinsUI;
     [SerializeField] Sprite PicUI;
 
+    [Header("IsGrounded")]
     [SerializeField] Transform OverlapPoint;
     [SerializeField] Transform OverlapPoint2;
     [SerializeField] LayerMask Ground;
+    //Set of the isgrounded bool
+    [SerializeField] bool IsGrounded;
 
     private float Shooes1;
+    [Header("Particle")]
     [SerializeField] ParticleSystem SnowStep;
     [SerializeField] ParticleSystem IceStep;
     [SerializeField] ParticleSystem ActualStep;
 
-
+    [Header("Code")]
     //Imported code 
     [SerializeField] HealthBar healthBar;
+    [SerializeField] MontShooes montShooes;
+    [SerializeField] DestroyShooes destroyShooes;
+    [SerializeField] IceShooes iceShooes;
+    [SerializeField] DefeatMenu defeatMenu;
+
+    [Header("GameObject")]
+    [SerializeField] GameObject FakePlateform;
+
 
 
     // Start is called before the first frame update
@@ -112,12 +120,6 @@ public class ProtoMoove : MonoBehaviour
     void Update()
     {
         defeatMenu.Pause();
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            CanMoove = false;
-            DefeatMenu.SetActive(true);
-            Respawn();
-        }
         if (CanMoove)
         {
             PlayerMoove();
@@ -179,6 +181,8 @@ public class ProtoMoove : MonoBehaviour
         {
             if (Input.GetButton("CustomJump"))
             {
+                animator.SetBool("IsJump", true);
+
                 rb.velocity = Vector2.zero;
                 //Add force to player to make it jump
                 
@@ -232,25 +236,25 @@ public class ProtoMoove : MonoBehaviour
         //Defeat condition on Plateform A
         if (other.gameObject.CompareTag("PlateformA") && Shooes!=1)
         {
-            Debug.Log("Perdu Rouge");
-            StartCoroutine(damage());
             MontShooesChange();
+            StartCoroutine(damage());
+
 
         }
         //Defeat condition on Plateform B
         if (other.gameObject.CompareTag("PlateformB") && Shooes != 2)
         {
-            Debug.Log("Perdu Vert");
-            StartCoroutine(damage());
             BaseShooesChange();
+            StartCoroutine(damage());
+
             
         }
         //Defeat condition on Plateform C
         if (other.gameObject.CompareTag("PlateformC") && Shooes != 3)
         {
-            Debug.Log("Perdu Bleu");
-            StartCoroutine(damage());
             IceShooesChange();
+            StartCoroutine(damage());
+
         }
         else if (other.gameObject.CompareTag("PlateformC"))
         {
@@ -258,13 +262,20 @@ public class ProtoMoove : MonoBehaviour
         }
         if (other.gameObject.CompareTag("PlatformD") && Shooes != 4)
         {
-            Debug.Log("Perdu glace brisée");
             StartCoroutine(damage());
+        }
+        else if (other.gameObject.CompareTag("PlatformD"))
+        {
+            rb.AddForce(Vector2.up * BounceForce, ForceMode2D.Impulse);
         }
         if (other.gameObject.CompareTag("Obstacle"))
         {
             StartCoroutine(damage());
             DefeatMenu.SetActive(true);
+        }
+        if (other.gameObject.CompareTag("Fake"))
+        {
+            FakePlateform.SetActive(false);
         }
         
     }
@@ -273,14 +284,15 @@ public class ProtoMoove : MonoBehaviour
         IsGrounded = Physics2D.OverlapArea(OverlapPoint.position, OverlapPoint2.position, Ground);
         if (IsGrounded )
         {
+
             animator.SetBool("IsJump", false);
         }
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        //Change bool if player leave ground
-        if ((other.gameObject.CompareTag("PlateformA")) || (other.gameObject.CompareTag("PlateformB")) || (other.gameObject.CompareTag("PlateformC")))
+        ////Change bool if player leave ground
+        if ((other.gameObject.CompareTag("PlateformA")) || (other.gameObject.CompareTag("PlateformB")) || (other.gameObject.CompareTag("PlateformC"))|| (other.gameObject.CompareTag("PlatformD")))
         {
             IsGrounded = false;
             animator.SetBool("IsJump", true);
@@ -296,6 +308,14 @@ public class ProtoMoove : MonoBehaviour
         if (other.gameObject.CompareTag("CheckPoint"))
         {
             RespawnPoint = transform.position;
+            CanMoove = true;
+
+        }
+        if (other.gameObject.CompareTag("ENDLVL1"))
+        {
+            BaseShooesChange();
+            CanMoove = false;
+            healthBar.ActualFreezeSpeed = 0;
         }
     }
     private IEnumerator damage()
@@ -315,6 +335,8 @@ public class ProtoMoove : MonoBehaviour
         this.gameObject.GetComponent<SpriteRenderer>().sprite = Glisse;
         image.sprite = PatinsUI;
         imageTouche.sprite = PatinsTouche;
+        ActualStep.Pause();
+        ActualStep.Clear();
         ActualStep = IceStep;
     }
     private void MontShooesChange()
@@ -325,6 +347,8 @@ public class ProtoMoove : MonoBehaviour
         this.gameObject.GetComponent<SpriteRenderer>().sprite = Mont;
         image.sprite = NeigeUI;
         imageTouche.sprite = NeigeTouche;
+        ActualStep.Pause();
+        ActualStep.Clear();
         ActualStep = SnowStep;
     }
     private void BaseShooesChange()
@@ -335,6 +359,8 @@ public class ProtoMoove : MonoBehaviour
         this.gameObject.GetComponent<SpriteRenderer>().sprite = Base;
         image.sprite = NormalUI;
         imageTouche.sprite = NormalTouche;
+        ActualStep.Pause();
+        ActualStep.Clear();
         ActualStep = SnowStep;
     }
 
@@ -354,7 +380,6 @@ public class ProtoMoove : MonoBehaviour
 
     public IEnumerator Respawn()
     {
-        Cam.transform.position = RespawnPoint;
         transform.position = RespawnPoint;
         healthBar.Bar.fillAmount = 0f;  
         Time.timeScale = 1.0f;

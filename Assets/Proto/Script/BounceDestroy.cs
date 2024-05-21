@@ -25,12 +25,6 @@ public class BounceDestroy : MonoBehaviour
                 Debug.Log("Destruction");
                 Plat.SetActive(false);
             }
-            else if (Chauss.Shooes != 3)
-            {
-                Debug.Log("Perdu Jaune");
-            }
-                
-
         }
 
     }

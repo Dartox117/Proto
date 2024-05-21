@@ -12,6 +12,8 @@ TagManager:
   - Obstacle
   - DeathZone
   - CheckPoint
+  - ENDLVL1
+  - Fake
   layers:
   - Default
   - TransparentFX
