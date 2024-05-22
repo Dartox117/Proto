@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndTuto : MonoBehaviour
+public class EndLVL2 : MonoBehaviour
 {
-    [SerializeField] ProtoMoove proto;
+    [SerializeField] HealthBar healthBar;
     [SerializeField] GameObject Snow;
+
     private void OnTriggerEnter2D(Collider2D player)
     {
-        proto.IsTuto = false;
-        Snow.SetActive(true);
+        healthBar.FreezeSpeed = 0.0005f;
+        Snow.SetActive(false);
     }
 
 }
