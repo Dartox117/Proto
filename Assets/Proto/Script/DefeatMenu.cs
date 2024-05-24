@@ -10,9 +10,9 @@ public class DefeatMenu : MonoBehaviour
     [SerializeField] GameObject RespawnButton;
     [SerializeField] GameObject ResumeButton;
     [SerializeField] HealthBar healthBar;
+    public bool CanPause;
      void Update()
     {
-        Pause();
     }
     [SerializeField] ProtoMoove protomoove;
     public void DefeatMainMenu()
@@ -22,6 +22,7 @@ public class DefeatMenu : MonoBehaviour
     }
     public void RespawnDefeat()
     {
+        CanPause = true;
         StartCoroutine(protomoove.Respawn());
         healthBar.CanDie = true;
 
@@ -55,6 +56,7 @@ public class DefeatMenu : MonoBehaviour
     }
     public void Death()
     {
+        CanPause = false;
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(RespawnButton);
         protomoove.DefeatMenu.SetActive(true);

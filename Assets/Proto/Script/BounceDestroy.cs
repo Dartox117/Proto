@@ -6,6 +6,7 @@ public class BounceDestroy : MonoBehaviour
 {
     public GameObject Plat;
     [SerializeField] ProtoMoove Chauss;
+    [SerializeField] ParticleSystem BOOM;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +23,9 @@ public class BounceDestroy : MonoBehaviour
         {
             if (Chauss.Shooes == 4)
             {
-                Debug.Log("Destruction");
+                BOOM.Play();
                 Plat.SetActive(false);
+                
             }
         }
 

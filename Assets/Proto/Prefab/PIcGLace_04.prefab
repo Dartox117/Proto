@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7646277354606859812}
   - component: {fileID: 5992231255061689391}
   - component: {fileID: 840859590417262512}
-  - component: {fileID: 4505675725311945536}
+  - component: {fileID: 1006575012479067044}
   m_Layer: 0
   m_Name: PIcGLace_04
   m_TagString: Obstacle
@@ -113,8 +113,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &4505675725311945536
-BoxCollider2D:
+--- !u!68 &1006575012479067044
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -148,14 +148,17 @@ BoxCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.046875, y: 0.5625}
-    newSize: {x: 2.046875, y: 0.5625}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 2.046875, y: 0.5625}
   m_EdgeRadius: 0
+  m_Points:
+  - {x: -1.0435355, y: -0.24956958}
+  - {x: -0.6876103, y: 0.25495628}
+  - {x: -0.40843663, y: -0.10150592}
+  - {x: -0.03606966, y: 0.29293412}
+  - {x: 0.2979654, y: -0.09536876}
+  - {x: 0.65708065, y: 0.27355096}
+  - {x: 1.0157502, y: -0.21886401}
+  - {x: -1.0374665, y: -0.24194095}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0

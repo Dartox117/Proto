@@ -104,6 +104,7 @@ public class ProtoMoove : MonoBehaviour
     void Start()
     {
     
+        defeatMenu.CanPause = true;
       //Get Rigibody to the component
       rb = GetComponent<Rigidbody2D>();
         ActualDamage = TutoDamage;
@@ -119,7 +120,10 @@ public class ProtoMoove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        defeatMenu.Pause();
+        if (defeatMenu.CanPause)
+        {
+            defeatMenu.Pause();
+        }
         if (CanMoove)
         {
             PlayerMoove();

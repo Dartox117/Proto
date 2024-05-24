@@ -9,7 +9,7 @@ public class EnterLVL1 : MonoBehaviour
 
     private void OnTriggerEnter2D (Collider2D player)
     {
-        healthBar.FreezeSpeed = 0.0002f;
+        healthBar.FreezeSpeed = 0.00025f;
         protoMoove.ActualDamage = protoMoove.Damage;
      
     }
