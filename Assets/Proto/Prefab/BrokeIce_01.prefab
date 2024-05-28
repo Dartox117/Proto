@@ -5018,6 +5018,7 @@ MonoBehaviour:
   Plat: {fileID: 8031707712329356445}
   Chauss: {fileID: 0}
   BOOM: {fileID: 2428699835518588366}
+  BOOMSOUND: {fileID: 0}
 --- !u!61 &7876013358887635387
 BoxCollider2D:
   m_ObjectHideFlags: 0

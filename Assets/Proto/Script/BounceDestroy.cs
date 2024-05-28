@@ -7,10 +7,11 @@ public class BounceDestroy : MonoBehaviour
     public GameObject Plat;
     [SerializeField] ProtoMoove Chauss;
     [SerializeField] ParticleSystem BOOM;
+    [SerializeField] AudioSource BOOMSOUND;
     // Start is called before the first frame update
     void Start()
     {
-        
+      
     }
 
     // Update is called once per frame
@@ -23,6 +24,7 @@ public class BounceDestroy : MonoBehaviour
         {
             if (Chauss.Shooes == 4)
             {
+                BOOMSOUND.Play();
                 BOOM.Play();
                 Plat.SetActive(false);
                 

@@ -11,9 +11,7 @@ public class DefeatMenu : MonoBehaviour
     [SerializeField] GameObject ResumeButton;
     [SerializeField] HealthBar healthBar;
     public bool CanPause;
-     void Update()
-    {
-    }
+    public bool CanDie;
     [SerializeField] ProtoMoove protomoove;
     public void DefeatMainMenu()
     {
@@ -56,12 +54,13 @@ public class DefeatMenu : MonoBehaviour
     }
     public void Death()
     {
-        CanPause = false;
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(RespawnButton);
-        protomoove.DefeatMenu.SetActive(true);
-        protomoove.CanMoove = false;
-        Time.timeScale = 0f;
+            CanPause = false;
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(RespawnButton);
+            protomoove.DefeatMenu.SetActive(true);
+            protomoove.CanMoove = false;
+            Time.timeScale = 0f;
+        
 
     }
     public void Resume()

@@ -85,7 +85,16 @@ public class ProtoMoove : MonoBehaviour
     [Header("Particle")]
     [SerializeField] ParticleSystem SnowStep;
     [SerializeField] ParticleSystem IceStep;
-    [SerializeField] ParticleSystem ActualStep;
+    public ParticleSystem ActualStep;
+
+    [Header("Sound")]
+    [SerializeField] AudioSource SnowStepSound;
+    [SerializeField] AudioSource IceStepSound;
+    private AudioSource ActualStepSound;
+    [SerializeField] AudioSource SnowJump;
+    [SerializeField] AudioSource IceJump;
+    private AudioSource ActualJump;
+    [SerializeField] AudioSource DamageSound;
 
     [Header("Code")]
     //Imported code 
@@ -112,6 +121,8 @@ public class ProtoMoove : MonoBehaviour
         CanMoove = false;
         IsTuto = true;
         IsIntro = true;
+        ActualStepSound = SnowStepSound;
+        ActualJump = SnowJump;
       
 
 
@@ -186,7 +197,7 @@ public class ProtoMoove : MonoBehaviour
             if (Input.GetButton("CustomJump"))
             {
                 animator.SetBool("IsJump", true);
-
+                ActualJump.Play();
                 rb.velocity = Vector2.zero;
                 //Add force to player to make it jump
                 
@@ -326,6 +337,7 @@ public class ProtoMoove : MonoBehaviour
     {
         healthBar.Bar.fillAmount += ActualDamage;
         spriteRenderer.color = Plat3;
+        DamageSound.Play();
         yield return new WaitForSeconds(0.3f);
         spriteRenderer.color = BaseColor;
         ActualStep.Pause();
@@ -342,6 +354,9 @@ public class ProtoMoove : MonoBehaviour
         ActualStep.Pause();
         ActualStep.Clear();
         ActualStep = IceStep;
+        ActualJump = IceJump;
+        ActualStepSound.Stop();
+        ActualStepSound = IceStepSound;
     }
     private void MontShooesChange()
     {
@@ -354,6 +369,9 @@ public class ProtoMoove : MonoBehaviour
         ActualStep.Pause();
         ActualStep.Clear();
         ActualStep = SnowStep;
+        ActualJump = SnowJump;
+        ActualStepSound.Stop();
+        ActualStepSound = SnowStepSound;
     }
     private void BaseShooesChange()
     {
@@ -366,6 +384,9 @@ public class ProtoMoove : MonoBehaviour
         ActualStep.Pause();
         ActualStep.Clear();
         ActualStep = SnowStep;
+        ActualJump = SnowJump;
+        ActualStepSound.Stop();
+        ActualStepSound = SnowStepSound;
     }
 
     private void SnowStepPlay()
@@ -373,11 +394,13 @@ public class ProtoMoove : MonoBehaviour
         if (IsGrounded && HorizontalInput != 0)
         {
             ActualStep.Play();
+            ActualStepSound.enabled = true;
         }
         else
         {
             ActualStep.Pause();
             ActualStep.Clear();
+            ActualStepSound.enabled=false;
         }
         
     }

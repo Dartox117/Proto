@@ -5,16 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class OptionsMenu : MonoBehaviour
 {
+    [SerializeField] AudioSource Click;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Click.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void QuitOptionsButton()
@@ -22,3 +23,4 @@ public class OptionsMenu : MonoBehaviour
         SceneManager.LoadScene("SCN_TITLESCREEN");
     }
 }
+
