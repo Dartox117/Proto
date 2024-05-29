@@ -14,8 +14,10 @@ public class EndCinematiqueTrigger : MonoBehaviour
     [SerializeField] DefeatMenu defeatMenu;
     [SerializeField] GameObject MainMenuButton;
     [SerializeField] Chrono chrono;
+    [SerializeField] AudioSource Sound;
     private void OnTriggerEnter2D(Collider2D Player)
     {
+        Sound.volume = 0.3f;
         protomoove.ActualStep.Stop();
         protomoove.CanMoove = false;
         chrono.timePaused = true;
@@ -24,6 +26,7 @@ public class EndCinematiqueTrigger : MonoBehaviour
 
     public void EndGame()
     {
+        protomoove.ActualStepSound.Stop();
         VictoryMenu.SetActive(true);
         chrono.DisplayTime(chrono.timeValue);
         defeatMenu.CanPause = false;

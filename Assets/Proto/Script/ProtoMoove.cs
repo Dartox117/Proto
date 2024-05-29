@@ -90,11 +90,12 @@ public class ProtoMoove : MonoBehaviour
     [Header("Sound")]
     [SerializeField] AudioSource SnowStepSound;
     [SerializeField] AudioSource IceStepSound;
-    private AudioSource ActualStepSound;
+    public AudioSource ActualStepSound;
     [SerializeField] AudioSource SnowJump;
     [SerializeField] AudioSource IceJump;
     private AudioSource ActualJump;
     [SerializeField] AudioSource DamageSound;
+    [SerializeField] AudioSource Music;
 
     [Header("Code")]
     //Imported code 
@@ -286,6 +287,7 @@ public class ProtoMoove : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             StartCoroutine(damage());
+            defeatMenu.Death();
             DefeatMenu.SetActive(true);
         }
         if (other.gameObject.CompareTag("Fake"))
@@ -315,6 +317,10 @@ public class ProtoMoove : MonoBehaviour
         if (other.gameObject.CompareTag("PlateformC"))
         {
             mouvementSpeed = NormalSpeed;
+        }
+        if (other.gameObject.CompareTag("Cinematique"))
+        {
+            ActualStep.Stop();
         }
     }
 
@@ -407,13 +413,13 @@ public class ProtoMoove : MonoBehaviour
 
     public IEnumerator Respawn()
     {
+        BaseShooesChange();
         transform.position = RespawnPoint;
         healthBar.Bar.fillAmount = 0f;  
         Time.timeScale = 1.0f;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.7f);
         CanMoove = true;
         spriteRenderer.flipX = false;
-        BaseShooesChange();
         DefeatMenu.SetActive(false);
         BrokenIceRespawn();
         if (IsTuto)
@@ -438,6 +444,7 @@ public class ProtoMoove : MonoBehaviour
 
     public void CanMooveSignal()
     {
+        Music.Play();
         CanMoove = true;
         IsIntro = false;
         RespawnPoint = transform.position;

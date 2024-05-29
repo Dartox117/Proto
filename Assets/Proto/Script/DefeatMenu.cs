@@ -54,12 +54,13 @@ public class DefeatMenu : MonoBehaviour
     }
     public void Death()
     {
-            CanPause = false;
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(RespawnButton);
-            protomoove.DefeatMenu.SetActive(true);
-            protomoove.CanMoove = false;
-            Time.timeScale = 0f;
+        protomoove.CanMoove = false;
+        Time.timeScale = 0f;
+        CanPause = false;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(RespawnButton);
+        protomoove.DefeatMenu.SetActive(true);
+            
         
 
     }
